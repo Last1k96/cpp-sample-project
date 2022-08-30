@@ -19,4 +19,20 @@ set(ENABLE_DEVELOPER_MODE
 # Change this to false if you want to disable warnings_as_errors in developer mode
 set(OPT_WARNINGS_AS_ERRORS_DEVELOPER_DEFAULT TRUE)
 
-add_executable(sample_project main.cpp)
+# Third-party
+Include(FetchContent)
+
+FetchContent_Declare(
+        Catch2
+        GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+        GIT_TAG        v2.13.1
+        OVERRIDE_FIND_PACKAGE
+)
+
+FetchContent_MakeAvailable(Catch2)
+
+add_executable(main main.cpp)
+
+find_package(Catch2)
+target_link_libraries(main Catch2::Catch2)
+
