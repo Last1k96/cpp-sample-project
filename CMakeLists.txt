@@ -1,38 +1,19 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.23)
 project(sample_project)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 11)
 
 # strongly encouraged to enable this globally to avoid conflicts between
 # -Wpedantic being enabled and -std=c++20 and -std=gnu++20 for example
 # when compiling with PCH enabled
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Note: by default ENABLE_DEVELOPER_MODE is True
-# This means that all analysis (sanitizers, static analysis)
-# is enabled and all warnings are treated as errors
-# if you want to switch this behavior, change TRUE to FALSE
-set(ENABLE_DEVELOPER_MODE
-        TRUE
-        CACHE BOOL "Enable 'developer mode'")
+add_executable(${PROJECT_NAME} main.cpp)
 
-# Change this to false if you want to disable warnings_as_errors in developer mode
-set(OPT_WARNINGS_AS_ERRORS_DEVELOPER_DEFAULT TRUE)
+find_package(fmt REQUIRED)
 
-# Third-party
-Include(FetchContent)
+target_link_libraries(
+    ${PROJECT_NAME} 
+    PRIVATE fmt::fmt)
 
-FetchContent_Declare(
-        Catch2
-        GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-        GIT_TAG        v2.13.1
-        OVERRIDE_FIND_PACKAGE
-)
-
-FetchContent_MakeAvailable(Catch2)
-
-add_executable(main main.cpp)
-
-find_package(Catch2)
-target_link_libraries(main Catch2::Catch2)
 

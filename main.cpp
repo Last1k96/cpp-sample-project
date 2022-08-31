@@ -1,6 +1,13 @@
+#include <random>
 #include <iostream>
 
+#include <fmt/format.h>
+
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    auto x = 10;
+    auto y = 20;
+    std::cout << x + y << std::endl;
+    
+
     return 0;
 }
