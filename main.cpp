@@ -4,10 +4,7 @@
 #include <fmt/format.h>
 
 int main() {
-    auto x = 10;
-    auto y = 20;
-    std::cout << x + y << std::endl;
-    
+    fmt::print("Hello, World from fmt!");    
 
     return 0;
 }
