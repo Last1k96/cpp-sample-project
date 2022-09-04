@@ -26,7 +26,7 @@ if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
 endif()
 
 include(${CMAKE_BINARY_DIR}/conan.cmake)
-
+ 
 conan_cmake_run(REQUIRES 
                 catch2/2.13.9
                 spdlog/1.10.0
@@ -42,4 +42,5 @@ find_package(spdlog REQUIRED)
 
 add_executable(${PROJECT_NAME} main.cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt)
+
 
